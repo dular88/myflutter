@@ -7,12 +7,12 @@ import 'package:learnflutter1/drawer.dart';
 import 'package:http/http.dart' as http;
 import 'package:learnflutter1/utils/Constants.dart';
 
-class HomePageFB extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  State<HomePageFB> createState() => _HomePageFBState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageFBState extends State<HomePageFB> {
+class _HomePageState extends State<HomePage> {
   TextEditingController _nameController = TextEditingController();
   var myText = 'Change Me';
   var url = "https://jsonplaceholder.typicode.com/photos";

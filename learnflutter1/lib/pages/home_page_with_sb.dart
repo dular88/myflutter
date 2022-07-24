@@ -7,7 +7,7 @@ import 'package:learnflutter1/drawer.dart';
 import 'package:http/http.dart' as http;
 import 'package:learnflutter1/utils/Constants.dart';
 
-class HomePageFB extends StatelessWidget {
+class HomePageSB extends StatelessWidget {
   Future getData() async {
     var url = "https://jsonplaceholder.typicode.com/photos";
     var res = await http
@@ -16,6 +16,12 @@ class HomePageFB extends StatelessWidget {
 
     return data;
     // setState(() {});
+  }
+
+  Stream<List<String>> getStreamData() {
+    var data = Stream<List<String>>.fromIterable(
+        [List<String>.generate(20, (index) => 'Item $index'.toString())]);
+    return data;
   }
 
   Widget build(BuildContext context) {
@@ -32,32 +38,32 @@ class HomePageFB extends StatelessWidget {
               icon: Icon(Icons.exit_to_app))
         ],
       ),
-      body: FutureBuilder(
-          future: getData(),
+      body: StreamBuilder(
+          stream: getStreamData(),
           builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.none:
-                return Center(
-                  child: Text('Fetch Something'),
-                );
-              case ConnectionState.active:
-              case ConnectionState.waiting:
-                return Center(child: CircularProgressIndicator());
-              case ConnectionState.done:
-                if (snapshot.hasError) {
-                  return Center(child: Text('Some Error Occured'));
-                }
-                print(snapshot.data);
+              if (snapshot.hasData) {
+      var myList = snapshot.data! as List<int>; // <-- Your data using 'as'
+    }
+            // switch (snapshot.connectionState) {
+            //   case ConnectionState.none:
+            //     return Center(
+            //       child: Text('Fetch Something'),
+            //     );
+            //   case ConnectionState.active:
+            //   case ConnectionState.waiting:
+            //     return Center(child: CircularProgressIndicator());
+            //   case ConnectionState.done:
+            //     if (snapshot.hasError) {
+            //       return Center(child: Text('Some Error Occured'));
+            //     }
 
                 return ListView.builder(
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(snapshot.data.toString()),
-                      // subtitle: Text('ID ${snapshot[index].data['id']}'),
-                      // leading: Image.network(snapshot.data[index]['url']),
+                      title: Text(snapshot.data.['index']),
                     );
                   },
-                  itemCount: 3,
+                  itemCount: 1,
                 );
             }
           }),
