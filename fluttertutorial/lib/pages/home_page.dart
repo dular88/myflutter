@@ -2,6 +2,8 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 
+import '../widgets/drawer.dart';
+
 class HomePage extends StatelessWidget {
   @override
   final int age = 34;
@@ -16,7 +18,7 @@ class HomePage extends StatelessWidget {
           child: Text('Testing Catalog App'),
         ),
       ),
-      drawer: Drawer(),
+      drawer: MyDrawer(),
     );
   }
 }
