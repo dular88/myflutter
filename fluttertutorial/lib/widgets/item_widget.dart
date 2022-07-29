@@ -16,7 +16,7 @@ class ItemWidget extends StatelessWidget {
         },
         title: Text(item.title),
         trailing: Text(
-          '\$${item.price.toString()}',
+          '\$${item.id}',
           style:
               TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold),
         ),
