@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertutorial/pages/home_page.dart';
+import 'package:fluttertutorial/pages/cart_page.dart';
 import 'package:fluttertutorial/pages/login_page.dart';
 import 'package:fluttertutorial/utils/routes.dart';
-import 'package:fluttertutorial/widgets/themes.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import 'pages/home_page.dart';
+import 'widgets/themes.dart';
 
 void main() {
-  runApp(MyFlutters());
+  runApp(MyApp());
 }
 
-class MyFlutters extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
-      initialRoute: '/home',
+      debugShowCheckedModeBanner: false,
+      initialRoute: MyRoutes.homeRoute,
       routes: {
-        '/': (context) => LoginPage(),
+        "/": (context) => LoginPage(),
         MyRoutes.homeRoute: (context) => HomePage(),
-        MyRoutes.loginRoute: (context) => LoginPage()
+        MyRoutes.loginRoute: (context) => LoginPage(),
+        MyRoutes.cartRoute: (context) => CartPage(),
       },
     );
   }
